@@ -24,6 +24,8 @@ docker-compose -f .\backend\docker-compose.dev.yml build
 
 ### Run service for development
 
+[settings.env.example](./settings.env.example) 파일을 복사하여 settings.dev.env 파일을 적절히 작성합니다.
+
 ``` bash
 # init database
 docker-compose -f .\backend\docker-compose.dev.yml run --rm backend pipenv run python manage.py db upgrade
@@ -34,6 +36,8 @@ docker-compose -f .\frontend\docker-compose.dev.yml up frontend
 ```
 
 ### Run service for production
+
+[settings.env.example](./settings.env.example) 파일을 복사하여 settings.env 파일을 적절히 작성합니다.
 
 ``` bash
 docker-compose -f .\frontend\docker-compose.prod.yml run --rm frontend yarn run build
