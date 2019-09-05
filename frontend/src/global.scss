@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+$tdm-blue: #2196f3;
+$tdm-red: #ff1744;
+$tdm-gray: #454d5d;
+
+$mdc-theme-primary: $tdm-blue;
+$mdc-theme-secondary: $tdm-red;
+$mdc-theme-background: $tdm-gray;
+$mdc-typography-font-family: unquote("NanumGothic, sans-serif");
+
+/// 색을 약간 밝게 한다
+/// @access public
+/// @param {Color} $color - 밝게 만들려는 색
+/// @param {Number} $percentage - 반환될 색 내 `$color`의 백분율
+/// @return {Color}
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/// 색을 약간 어둡게 한다
+/// @access public
+/// @param {Color} $color - 어둡게 만들려는 색
+/// @param {Number} $percentage - 반환될 색 내 `$color`의 백분율
+/// @return {Color}
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}

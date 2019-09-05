@@ -1,0 +1,19 @@
+version: '3'
+services:
+  frontend:
+    build: .
+    command: "yarn run serve"
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/frontend
+      - node-modules:/frontend/node_modules
+    env_file:
+      - ../settings.env
+      - ../settings.dev.env
+    environment:
+      - "CHOKIDAR_USEPOLLING=true"
+      - "CHOKIDAR_INTERVAL=100"
+
+volumes:
+  node-modules:

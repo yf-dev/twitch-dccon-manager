@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    env_file:
+      - ../settings.env
+    environment:
+      - "LC_COLLATE=C"
+
+  backend:
+    build: .
+    links:
+      - db
+    volumes:
+      - ./flask:/var/www/flask
+      - ./supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+      - ./log/uwsgi:/var/log/uwsgi
+      - ./log/nginx:/var/log/nginx
+      - backend-venv:/var/www/flask/.venv
+    restart: unless-stopped
+    env_file:
+      - ../settings.env
+    environment:
+      - "PIPENV_VENV_IN_PROJECT=1"
+
+volumes:
+  db-data:
+  backend-venv:
